@@ -1,0 +1,189 @@
+Category,Name,Include
+OST_AbutmentFoundations,Abutment Foundations,0
+OST_AbutmentPiles,Abutment Piles,0
+OST_AbutmentWalls,Abutment Walls,0
+OST_Alignments,Alignments,0
+OST_AnalyticSpaces,Analytical Spaces,1
+OST_AnalyticSurfaces,Analytical Surfaces,1
+OST_AnalyticalNodes,Analytical Nodes,0
+OST_AnalyticalPipeConnections,Analytical Pipe Connections,0
+OST_ApproachSlabs,Approach Slabs,0
+OST_AreaLoads,Area Loads,1
+OST_AreaRein,Structural Area Reinforcement,0
+OST_Areas,Areas,1
+OST_Assemblies,Assemblies,1
+OST_AudioVisualDevices,Audio Visual Devices,1
+OST_BeamAnalytical,Analytical Beams,0
+OST_BraceAnalytical,Analytical Braces,0
+OST_BridgeAbutments,Abutments,0
+OST_BridgeArches,Arches,0
+OST_BridgeBearings,Bearings,0
+OST_BridgeCables,Bridge Cables,0
+OST_BridgeDecks,Bridge Decks,0
+OST_BridgeFoundations,Pier Foundations,0
+OST_BridgeFraming,Bridge Framing,0
+OST_BridgeFramingCrossBracing,Cross Bracing,0
+OST_BridgeFramingDiaphragms,Diaphragms,0
+OST_BridgeFramingTrusses,Trusses,0
+OST_BridgeGirders,Primarys,0
+OST_BridgePiers,Piers,0
+OST_BridgeTowers,Pier Towers,0
+OST_BuildingPad,Pads,0
+OST_CLines,Reference Planes,0
+OST_CableTray,Cable Trays,1
+OST_CableTrayFitting,Cable Tray Fittings,1
+OST_Callouts,Callouts,1
+OST_Casework,Casework,0
+OST_Ceilings,Ceilings,0
+OST_ColumnAnalytical,Analytical Columns,0
+OST_Columns,Columns,0
+OST_CommunicationDevices,Communication Devices,1
+OST_Conduit,Conduits,1
+OST_ConduitFitting,Conduit Fittings,1
+OST_Coupler,Structural Rebar Couplers,0
+OST_CurtaSystem,Curtain Systems,0
+OST_CurtainWallMullions,Curtain Wall Mullions,0
+OST_CurtainWallPanels,Curtain Panels,0
+OST_DataDevices,Data Devices,1
+OST_DetailComponents,Detail Items,1
+OST_Doors,Doors,0
+OST_DuctAccessory,Duct Accessories,1
+OST_DuctCurves,Ducts,1
+OST_DuctFitting,Duct Fittings,1
+OST_DuctInsulations,Duct Insulations,1
+OST_DuctLinings,Duct Linings,1
+OST_DuctSystem,Duct Systems,1
+OST_DuctTerminal,Air Terminals,1
+OST_EdgeSlab,Slab Edges,0
+OST_ElectricalEquipment,Electrical Equipment,1
+OST_ElectricalFixtures,Electrical Fixtures,1
+OST_Elev,Elevations,0
+OST_Entourage,Entourage,0
+OST_ExpansionJoints,Expansion Joints,0
+OST_FabricAreas,Structural Fabric Areas,0
+OST_FabricReinforcement,Structural Fabric Reinforcement,0
+OST_FabricationContainment,MEP Fabrication Containment,1
+OST_FabricationDuctwork,MEP Fabrication Ductwork,1
+OST_FabricationDuctworkInsulation,Insulation,1
+OST_FabricationDuctworkLining,Lining,1
+OST_FabricationHangers,MEP Fabrication Hangers,1
+OST_FabricationPipework,MEP Fabrication Pipework,1
+OST_FabricationPipeworkInsulation,Insulation,1
+OST_Fascia,Fascias,0
+OST_FireAlarmDevices,Fire Alarm Devices,1
+OST_FireProtection,Fire Protection,1
+OST_FlexDuctCurves,Flex Ducts,1
+OST_FlexPipeCurves,Flex Pipes,1
+OST_FloorAnalytical,Analytical Floors,1
+OST_Floors,Floors,0
+OST_FoodServiceEquipment,Food Service Equipment,1
+OST_FoundationSlabAnalytical,Analytical Foundation Slabs,0
+OST_Furniture,Furniture,0
+OST_FurnitureSystems,Furniture Systems,0
+OST_GenericModel,Generic Models,1
+OST_GridChains,Multi-segmented Grid,1
+OST_Grids,Grids,1
+OST_Gutter,Gutters,1
+OST_HVAC_Zones,HVAC Zones,1
+OST_Hardscape,Hardscape,0
+OST_InternalAreaLoads,Internal Area Loads,0
+OST_InternalLineLoads,Internal Line Loads,0
+OST_InternalPointLoads,Internal Point Loads,0
+OST_IsolatedFoundationAnalytical,Analytical Isolated Foundations,0
+OST_Levels,Levels,0
+OST_LightingDevices,Lighting Devices,1
+OST_LightingFixtures,Lighting Fixtures,1
+OST_LineLoads,Line Loads,0
+OST_LinksAnalytical,Analytical Links,1
+OST_MEPAnalyticalAirLoop,Air Systems,1
+OST_MEPAnalyticalWaterLoop,Water Loops,1
+OST_MEPSpaces,Spaces,1
+OST_MEPSystemZone,System-Zones,1
+OST_Mass,Mass,0
+OST_MassExteriorWall,Mass Exterior Wall,0
+OST_MassFloor,Mass Floor,0
+OST_MassGlazing,Mass Glazing,0
+OST_MassInteriorWall,Mass Interior Wall,0
+OST_MassOpening,Mass Opening,0
+OST_MassRoof,Mass Roof,0
+OST_MassSkylights,Mass Skylight,0
+OST_MassZone,Mass Zone,0
+OST_MechanicalEquipment,Mechanical Equipment,1
+OST_MedicalEquipment,Medical Equipment,1
+OST_NurseCallDevices,Nurse Call Devices,1
+OST_Parking,Parking,0
+OST_Parts,Parts,0
+OST_PathOfTravelLines,<Path of Travel Lines>,0
+OST_PathRein,Structural Path Reinforcement,0
+OST_PierCaps,Pier Caps,0
+OST_PierColumns,Pier Columns,0
+OST_PierPiles,Pier Piles,0
+OST_PierWalls,Pier Walls,0
+OST_PipeAccessory,Pipe Accessories,1
+OST_PipeCurves,Pipes,1
+OST_PipeFitting,Pipe Fittings,1
+OST_PipeInsulations,Pipe Insulations,1
+OST_PipingSystem,Piping Systems,1
+OST_PlaceHolderDucts,Duct Placeholders,1
+OST_PlaceHolderPipes,Pipe Placeholders,1
+OST_Planting,Planting,0
+OST_PlumbingFixtures,Plumbing Fixtures,1
+OST_PointLoads,Point Loads,1
+OST_RailingHandRail,Handrails,0
+OST_RailingSupport,Supports,0
+OST_RailingTermination,Terminations,0
+OST_RailingTopRail,Top Rails,0
+OST_Ramps,Ramps,0
+OST_Rebar,Structural Rebar,0
+OST_ReferenceLines,Reference Lines,1
+OST_Roads,Roads,0
+OST_Roofs,Roofs,0
+OST_Rooms,Rooms,1
+OST_Sections,Sections,1
+OST_SecurityDevices,Security Devices,1
+OST_ShaftOpening,Shaft Openings,0
+OST_Signage,Signage,0
+OST_Site,Site,0
+OST_SiteProperty,Property Lines,0
+OST_SitePropertyLineSegment,Property Line Segments,0
+OST_SpecialityEquipment,Specialty Equipment,0
+OST_Sprinklers,Sprinklers,1
+OST_Stairs,Stairs,0
+OST_StairsLandings,Landings,0
+OST_StairsRailing,Railings,0
+OST_StairsRailingBaluster,Balusters,0
+OST_StairsRuns,Runs,0
+OST_StairsStringerCarriage,Supports,0
+OST_StructConnectionAnchors,Anchors,0
+OST_StructConnectionBolts,Bolts,0
+OST_StructConnectionHoles,Holes,0
+OST_StructConnectionModifiers,Modifiers,0
+OST_StructConnectionOthers,Others,0
+OST_StructConnectionPlates,Plates,0
+OST_StructConnectionProfiles,Profiles,0
+OST_StructConnectionShearStuds,Shear Studs,0
+OST_StructConnectionSymbol,Symbol,0
+OST_StructConnectionWelds,Welds,0
+OST_StructConnections,Structural Connections,0
+OST_StructSubConnections,None,0
+OST_StructuralColumns,Structural Columns,0
+OST_StructuralFoundation,Structural Foundations,0
+OST_StructuralFraming,Structural Framing,0
+OST_StructuralFramingSystem,Structural Beam Systems,0
+OST_StructuralStiffener,Structural Stiffeners,0
+OST_StructuralTendons,Structural Tendons,0
+OST_StructuralTruss,Structural Trusses,0
+OST_SwitchSystem,Switch System,1
+OST_TelephoneDevices,Telephone Devices,1
+OST_TemporaryStructure,Temporary Structures,0
+OST_Topography,Topography,0
+OST_VerticalCirculation,Vertical Circulation,0
+OST_VibrationDampers,Vibration Dampers,0
+OST_VibrationIsolators,Vibration Isolators,0
+OST_VibrationManagement,Vibration Management,0
+OST_WallAnalytical,Analytical Walls,1
+OST_WallFoundationAnalytical,Analytical Wall Foundations,0
+OST_Walls,Walls,0
+OST_Windows,Windows,0
+OST_Wire,Wires,0
+OST_ZoneEquipment,Zone Equipment,1

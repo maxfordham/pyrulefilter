@@ -1,0 +1,13 @@
+name: pyrulefilter-dev
+# channels priority
+# see https://bioconda.github.io/
+# conda-forge has highest prioriy
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python>=3.7
+  - pydantic
+  - pip    
+  - pip:
+    - git+ssh://git@github.com/maxfordham/pyuniclass.git@0.1.0
