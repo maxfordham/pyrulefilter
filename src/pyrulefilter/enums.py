@@ -48,11 +48,13 @@ class StrEnum(str, Enum):
     pass
 
 
-CategoriesEnum = StrEnum("CategoriesEnum", get_categories())
+FilterCategoriesEnum = StrEnum("FilterCategoriesEnum", get_categories())
+
 
 class RuleSetType(str, Enum):
     AND = "AND"
     OR = "OR"
+
 
 # REF
 # {
