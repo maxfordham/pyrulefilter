@@ -5,11 +5,6 @@
 
 used to create rules for filtering lists of dictionaries (tabular style).
 
-```py
-li = 
-
-```
-
 -----
 
 **Table of Contents**
@@ -22,6 +17,13 @@ li =
 
 ```console
 pip install pyrulefilter
+```
+
+## Development
+
+```console
+mamba env create -f environment.yml
+pytest
 ```
 
 ## License
