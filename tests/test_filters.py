@@ -3,7 +3,7 @@ from pyrulefilter.filters import (
     Rule,
     RuleSet,
 )  # , Docum    RuleSet #ScheduleRuleSet,
-from pyrulefilter.enums import OperatorsEnum  # RevitCategoriesEnum,
+from pyrulefilter.enums import OperatorsEnum, FilterCategoriesEnum
 from pyrulefilter.filters import (
     operate_rule_on_value,
     rule_check_dict,
@@ -120,3 +120,6 @@ class TestRules:
 
         check = ruleset_check_dicts(data, rule_set, li_categories=categories)
         assert check == [True, False]
+
+    def test_categories(self):
+        assert FilterCategoriesEnum.OST_DuctInsulations == "Duct Insulations"

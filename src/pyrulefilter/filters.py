@@ -1,12 +1,13 @@
 import typing as ty
 from pyrulefilter.schemas import Rule, RuleSet, RuleSetType
-from pyrulefilter.enums import OperatorsEnum  # CategoriesEnum,
+from pyrulefilter.enums import OperatorsEnum  # FilterCategoriesEnum,
 import operator
 import logging
 
 logger = logging.getLogger(__name__)
 
 # from aectemplater_schemas.type_spec import TypeSpecification
+
 
 def contains(a: str, b: str) -> bool:
     """check a in b

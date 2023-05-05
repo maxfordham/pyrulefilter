@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
-from pyrulefilter.enums import CategoriesEnum, OperatorsEnum, RuleSetType
+from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
+
 
 def html_link(url: str, description: str, color: str = "blue"):
     """returns an html link string to open in new tab
@@ -26,8 +27,9 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
     URL_UNICLASS_PRODUCTS, "Uniclass Product codes 🔗"
 )
 
+
 class Rule(BaseModel):
-    categories: list[CategoriesEnum] = Field(
+    categories: list[FilterCategoriesEnum] = Field(
         default_factory=lambda: [],
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
         description=(
@@ -59,9 +61,6 @@ class Rule(BaseModel):
             "align_horizontal": False,
             "autoui": "__main__.RuleUi",  # this explicitly defines RuleUi as the interface rather than AutoObject
         }
-
-
-
 
 
 uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
