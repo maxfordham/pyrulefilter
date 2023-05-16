@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -30,7 +30,10 @@ Issues = "https://github.com/unknown/pyrulefilter/issues"
 Source = "https://github.com/unknown/pyrulefilter"
 
 [tool.hatch.version]
-path = "src/pyrulefilter/__about__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/pyrulefilter/_version.py"
 
 [tool.hatch.envs.default]
 dependencies = ["pytest", "pytest-cov", "pyuniclass"]
