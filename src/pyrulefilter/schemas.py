@@ -71,6 +71,7 @@ class Rule(BaseModel):
             "align_horizontal": False,
             "autoui": "__main__.RuleUi",  # this explicitly defines RuleUi as the interface rather than AutoObject
         }
+        orm_mode = True
 
 
 uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
@@ -102,6 +103,7 @@ class RuleSet(BaseModel):
     class Config:
         allow_extra = True
         schema_extra = {"align_horizontal": False}
+        orm_mode = True
 
 
 RuleSet.__doc__ = (
