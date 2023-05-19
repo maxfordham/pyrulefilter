@@ -2,6 +2,16 @@ from pydantic import BaseModel, Field
 from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
 
 
+class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
+    @classmethod
+    def schema(cls):
+        schema = super().schema()
+        for fld_v in cls.__fields__.values():
+            if fld_v.default_factory is not None:
+                schema["properties"][fld_v.alias]["default"] = fld_v.default_factory()
+        return schema
+
+
 def html_link(url: str, description: str, color: str = "blue"):
     """returns an html link string to open in new tab
 
@@ -81,6 +91,9 @@ An example pattern is to:
 class RuleSet(BaseModel):
     set_type: RuleSetType = Field(default=RuleSetType.AND, disabled=True)
     rules: list[Rule] = Field(description=rules_des)
+    name: str = Field(
+        None, description="name of rule set. indicates schedule name in Revit"
+    )
 
     # NOTE: in future maybe make rules recursive (like Revit)
     # i.e.
