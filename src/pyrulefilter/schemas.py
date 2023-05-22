@@ -4,8 +4,8 @@ from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
 
 class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
     @classmethod
-    def schema(cls):
-        schema = super().schema()
+    def schema(cls, **kwargs):
+        schema = super().schema(**kwargs)
         for fld_v in cls.__fields__.values():
             if fld_v.default_factory is not None:
                 schema["properties"][fld_v.alias]["default"] = fld_v.default_factory()
