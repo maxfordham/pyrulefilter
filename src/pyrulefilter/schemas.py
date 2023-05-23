@@ -90,11 +90,18 @@ An example pattern is to:
 
 
 class RuleSet(BaseModel):
-    set_type: RuleSetType = Field(default=RuleSetType.AND, disabled=True)
-    rules: list[Rule] = Field(description=rules_des)
     name: str = Field(
-        None, description="name of rule set. indicates schedule name in Revit"
+        "", description="name of rule set. indicates schedule name in Revit"
     )
+    description: str = Field(None, description="optional description of rule set")
+    set_type: RuleSetType = Field(
+        default=RuleSetType.AND,
+        disabled=True,
+        description="AND/OR. AND means all rules must evaluate to True for the item to be included in the schedule."
+        " OR means only one rule must evaluate to True for the item to be included in the schedule."
+        " for schedules it must be AND.",
+    )
+    rules: list[Rule] = Field(description=rules_des, format="dataframe")
 
     # NOTE: in future maybe make rules recursive (like Revit)
     # i.e.
