@@ -97,9 +97,9 @@ class RuleSet(BaseModel):
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
         disabled=True,
-        description="AND/OR. AND means all rules must evaluate to True for the item to be included in the schedule."
-        " OR means only one rule must evaluate to True for the item to be included in the schedule."
-        " for schedules it must be AND.",
+        description="AND/OR. AND -> all rules must evaluate to True; "
+        " OR -> only one rule must evaluate to True, for the item to be included in the schedule."
+        " For schedules it must be AND.",
     )
     rules: list[Rule] = Field(description=rules_des, format="dataframe")
 
