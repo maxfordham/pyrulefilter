@@ -107,7 +107,9 @@ class RuleSetBase(BaseModel):
 
 
 class RuleSet(RuleSetBase):
-    rules: list[Rule] = Field(description=rules_des, format="dataframe")
+    rules: list[Rule] = Field(
+        description=rules_des, default_factory=lambda: [], format="dataframe"
+    )
 
     # NOTE: in future maybe make rules recursive (like Revit)
     # i.e.
