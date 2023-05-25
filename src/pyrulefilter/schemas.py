@@ -89,7 +89,7 @@ An example pattern is to:
 """
 
 
-class RuleSet(BaseModel):
+class RuleSetBase(BaseModel):
     name: str = Field(
         "", description="name of rule set. indicates schedule name in Revit"
     )
@@ -97,10 +97,16 @@ class RuleSet(BaseModel):
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
         disabled=True,
-        description="AND/OR. AND -> all rules must evaluate to True; "
-        " OR -> only one rule must evaluate to True, for the item to be included in the schedule."
-        " For schedules it must be AND.",
+        description="OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
+        "for the item to be included.",
     )
+
+    class Config:
+        allow_extra = True
+        orm_mode = True
+
+
+class RuleSet(RuleSetBase):
     rules: list[Rule] = Field(description=rules_des, format="dataframe")
 
     # NOTE: in future maybe make rules recursive (like Revit)
