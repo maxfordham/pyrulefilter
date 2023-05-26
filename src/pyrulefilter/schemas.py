@@ -93,12 +93,16 @@ An example pattern is to:
 
 
 class RuleSetBase(BaseModel):
+    """defines a set of filter rules used to define what appears in a schedule"""
+
     name: str = Field(
         "",
         description="name of rule set. indicates schedule name in Revit",
         column_width=200,
     )
-    description: str = Field(None, description="optional description of rule set")
+    description: str = Field(
+        None, description="optional description of rule set", column_width=300
+    )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
         disabled=True,
@@ -110,6 +114,7 @@ class RuleSetBase(BaseModel):
     class Config:
         allow_extra = True
         orm_mode = True
+        title = "Rule Set Definition"
 
 
 class RuleSet(RuleSetBase):
