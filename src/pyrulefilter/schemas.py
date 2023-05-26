@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
+import typing as ty
 
 
 class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
@@ -39,22 +40,23 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
 
 
 class Rule(BaseModel):
-    categories: list[FilterCategoriesEnum] = Field(
-        default_factory=lambda: [],
+    categories: ty.Optional[list[FilterCategoriesEnum]] = Field(
+        default=None,
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
         description=(
             "Revit MEP categories to filter by (i.e. object must belong to"
             " categories defined here). If empty, all categories are included."
         ),
+        column_width=200,
     )
     parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
         autoui="ipyautoui.autowidgets.Combobox",
+        column_width=200,
     )
     operator: OperatorsEnum = Field(
-        description=(
-            "logical operator used to evaluate parameter value against value below"
-        )
+        description="logical operator used to evaluate parameter value against value below",
+        column_width=125,
     )
     value: str = Field(
         "",
@@ -63,6 +65,7 @@ class Rule(BaseModel):
             " required (e.g. has value operator)"
         ),
         autoui="ipyautoui.autowidgets.Combobox",
+        column_width=200,
     )
 
     class Config:
@@ -91,14 +94,17 @@ An example pattern is to:
 
 class RuleSetBase(BaseModel):
     name: str = Field(
-        "", description="name of rule set. indicates schedule name in Revit"
+        "",
+        description="name of rule set. indicates schedule name in Revit",
+        column_width=200,
     )
     description: str = Field(None, description="optional description of rule set")
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
         disabled=True,
         description="OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
-        "for the item to be included.",
+        " for the item to be included.",
+        column_width=100,
     )
 
     class Config:
