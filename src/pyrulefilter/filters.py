@@ -201,7 +201,7 @@ def rule_check_dict(property_data: dict, rule: Rule, category=None) -> bool:
     if category is not None:
         if not rule_check_category(category, rule):
             return False
-    value = get_param_value(property_data, rule.parameter)
+    value = get_param_value(property_data, rule.property)
     if value is None:
         return False
     else:

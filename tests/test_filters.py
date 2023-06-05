@@ -17,7 +17,7 @@ from pyuniclass import UT
 set_type = RuleSetType.AND
 rule = Rule(
     categories=[],
-    parameter="OverallHeight",
+    property="OverallHeight",
     operator=OperatorsEnum.GreaterOrEqual,
     value=150,
 )
@@ -28,13 +28,13 @@ GROUP = "Pr_70_60_36"  # Heat emitters
 SUBGROUP = "Pr_70_60_36_73"  #  Radiators
 rule1 = Rule(
     categories=[],
-    parameter="ClassificationProductCode",
+    property="ClassificationProductCode",
     operator=OperatorsEnum.BeginsWith,
     value=GROUP,
 )
 rule2 = Rule(
     categories=[],
-    parameter="ClassificationProductCode",
+    property="ClassificationProductCode",
     operator=OperatorsEnum.NotBeginsWith,
     value=SUBGROUP,
 )
@@ -60,7 +60,7 @@ class TestRules:
 
     def test_rule(self):
         data = {"a": "ave a good day"}
-        r1 = Rule(parameter="a", value="ave", operator=OperatorsEnum.BeginsWith)
+        r1 = Rule(property="a", value="ave", operator=OperatorsEnum.BeginsWith)
         assert rule_check_dict(data, r1)
 
         r1.value = "good"
@@ -69,19 +69,19 @@ class TestRules:
         r1.operator = OperatorsEnum.Contains
         assert rule_check_dict(data, r1)
 
-        r1.parameter = "b"
+        r1.property = "b"
         assert not rule_check_dict(data, r1)
 
     def test_ruleset(self):
         data = {"a": "ave a good day", "b": "be good"}
-        r1 = Rule(parameter="a", value="ave", operator=OperatorsEnum.BeginsWith)
-        r2 = Rule(parameter="a", value="good", operator=OperatorsEnum.Contains)
-        r3 = Rule(parameter="b", value="good", operator=OperatorsEnum.Contains)
+        r1 = Rule(property="a", value="ave", operator=OperatorsEnum.BeginsWith)
+        r2 = Rule(property="a", value="good", operator=OperatorsEnum.Contains)
+        r3 = Rule(property="b", value="good", operator=OperatorsEnum.Contains)
         rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2, r3])
 
         assert ruleset_check_dict(data, rule_set)
 
-        r4 = Rule(parameter="a", value="day", operator=OperatorsEnum.NotContains)
+        r4 = Rule(property="a", value="day", operator=OperatorsEnum.NotContains)
         rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2, r3, r4])
         check = ruleset_check_dict(data, rule_set)
         assert not check
@@ -91,13 +91,13 @@ class TestRules:
             {"a": "ave a good day", "b": "be good"},
             {"a": "ave a bad day", "b": "be bad"},
         ]
-        r2 = Rule(parameter="a", value="good", operator=OperatorsEnum.Contains)
+        r2 = Rule(property="a", value="good", operator=OperatorsEnum.Contains)
         rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r2])
 
         assert ruleset_check_dicts(data, rule_set) == [True, False]
 
-        r1 = Rule(parameter="a", value="day", operator=OperatorsEnum.Contains)
-        r2 = Rule(parameter="b", value="be", operator=OperatorsEnum.BeginsWith)
+        r1 = Rule(property="a", value="day", operator=OperatorsEnum.Contains)
+        r2 = Rule(property="b", value="be", operator=OperatorsEnum.BeginsWith)
         rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2])
         check = ruleset_check_dicts(data, rule_set)
         assert check == [True, True]
@@ -111,11 +111,11 @@ class TestRules:
         data = [l["property_data"] for l in data]
 
         r1 = Rule(
-            parameter="Manufacturer",
+            property="Manufacturer",
             value="Honeywell",
             operator=OperatorsEnum.Contains,
         )
-        r2 = Rule(parameter="TypeReference", value="2", operator=OperatorsEnum.Greater)
+        r2 = Rule(property="TypeReference", value="2", operator=OperatorsEnum.Greater)
         rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2])  # , r2
 
         check = ruleset_check_dicts(data, rule_set, li_categories=categories)
