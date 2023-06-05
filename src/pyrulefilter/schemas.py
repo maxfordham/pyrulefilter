@@ -49,13 +49,15 @@ class Rule(BaseModel):
         ),
         column_width=200,
     )
-    parameter: str = Field(
-        description="name of schedule parameter against which to apply filter rule",
+    property: str = Field(
+        description="name of schedule property against which to apply filter rule",
         autoui="ipyautoui.autowidgets.Combobox",
         column_width=200,
     )
     operator: OperatorsEnum = Field(
-        description="logical operator used to evaluate parameter value against value below",
+        description=(
+            "logical operator used to evaluate property value against value below"
+        ),
         column_width=125,
     )
     value: str = Field(
@@ -72,12 +74,16 @@ class Rule(BaseModel):
         allow_extra = True
         schema_extra = {
             "align_horizontal": False,
-            "autoui": "__main__.RuleUi",  # this explicitly defines RuleUi as the interface rather than AutoObject
+            "autoui": (
+                "__main__.RuleUi"
+            ),  # this explicitly defines RuleUi as the interface rather than AutoObject
         }
         orm_mode = True
 
 
-uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
+uniclass_property_code_name = html_link(
+    URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗"
+)
 uniclass_system_code_name = html_link(URL_UNICLASS_SYSTEMS, "UniclassSystemCode 🔗")
 rules_des = f"""
 each rule returns a boolean for the logical evaluation for every item from the requested categories.<br>
@@ -106,8 +112,10 @@ class RuleSetBase(BaseModel):
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
         disabled=True,
-        description="OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
-        " for the item to be included.",
+        description=(
+            "OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
+            " for the item to be included."
+        ),
         column_width=100,
     )
 
