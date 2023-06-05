@@ -130,20 +130,20 @@ def not_isnone(a, b=None) -> bool:
 
 
 MAP_OPERATORS = {
-    OperatorsEnum.Less: operator.lt,
-    OperatorsEnum.LessOrEqual: operator.le,
+    # OperatorsEnum.Less: operator.lt,
+    # OperatorsEnum.LessOrEqual: operator.le,
     OperatorsEnum.Equals: operator.eq,
     OperatorsEnum.NotEquals: operator.ne,
-    OperatorsEnum.GreaterOrEqual: operator.ge,
-    OperatorsEnum.Greater: operator.gt,
+    # OperatorsEnum.GreaterOrEqual: operator.ge,
+    # OperatorsEnum.Greater: operator.gt,
     OperatorsEnum.Contains: contains,
     OperatorsEnum.NotContains: not_contains,
     OperatorsEnum.BeginsWith: startswith,
     OperatorsEnum.NotBeginsWith: not_startswith,
     OperatorsEnum.EndsWith: endswith,
     OperatorsEnum.NotEndsWith: not_endswith,
-    OperatorsEnum.HasValueParameter: isnone,
-    OperatorsEnum.HasNoValueParameter: not_isnone,
+    # OperatorsEnum.HasValueParameter: isnone,
+    # OperatorsEnum.HasNoValueParameter: not_isnone,
 }
 
 # "CreateIsAssociatedWithGlobalParameterRule": "?",

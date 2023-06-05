@@ -14,14 +14,14 @@ from pyuniclass import UT
 
 
 # example1: TypeSpecification from aectemplater (2023-04-25)
-set_type = RuleSetType.AND
-rule = Rule(
-    categories=[],
-    property="OverallHeight",
-    operator=OperatorsEnum.GreaterOrEqual,
-    value=150,
-)
-rule_set = RuleSet(set_type=set_type, rules=[rule])
+# set_type = RuleSetType.AND
+# rule = Rule(
+#     categories=[],
+#     property="OverallHeight",
+#     operator=OperatorsEnum.GreaterOrEqual,
+#     value=150,
+# )
+# rule_set = RuleSet(set_type=set_type, rules=[rule])
 
 # example2: pyuniclass
 GROUP = "Pr_70_60_36"  # Heat emitters
@@ -115,8 +115,8 @@ class TestRules:
             value="Honeywell",
             operator=OperatorsEnum.Contains,
         )
-        r2 = Rule(property="TypeReference", value="2", operator=OperatorsEnum.Greater)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2])  # , r2
+        # r2 = Rule(property="TypeReference", value="2", operator=OperatorsEnum.Greater)
+        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1])  # , r2
 
         check = ruleset_check_dicts(data, rule_set, li_categories=categories)
         assert check == [True, False]
