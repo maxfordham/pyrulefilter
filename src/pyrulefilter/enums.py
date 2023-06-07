@@ -40,7 +40,7 @@ class OperatorsEnum(str, Enum):
     NotBeginsWith = "does not begin with"
     NotContains = "does not contain"
     NotEndsWith = "does not end with"
-    NotEquals = "dont not equal"
+    NotEquals = "does not equal"
     # SharedParameterApplicableRule = "?"
 
 
