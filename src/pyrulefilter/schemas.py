@@ -39,7 +39,7 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
 )
 
 
-class Rule(BaseModel):
+class RuleBase(BaseModel):
     categories: ty.Optional[list[FilterCategoriesEnum]] = Field(
         default=None,
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
@@ -49,14 +49,10 @@ class Rule(BaseModel):
         ),
         column_width=200,
     )
-    property: str = Field(
-        description="name of schedule property against which to apply filter rule",
-        autoui="ipyautoui.autowidgets.Combobox",
-        column_width=200,
-    )
+
     operator: OperatorsEnum = Field(
         description=(
-            "logical operator used to evaluate property value against value below"
+            "logical operator used to evaluate parameter value against value below"
         ),
         column_width=125,
     )
@@ -79,6 +75,14 @@ class Rule(BaseModel):
             ),  # this explicitly defines RuleUi as the interface rather than AutoObject
         }
         orm_mode = True
+
+
+class Rule(RuleBase):
+    parameter: str = Field(
+        description="name of schedule parameter against which to apply filter rule",
+        autoui="ipyautoui.autowidgets.Combobox",
+        column_width=200,
+    )
 
 
 uniclass_property_code_name = html_link(
