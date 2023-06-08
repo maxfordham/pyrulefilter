@@ -47,7 +47,7 @@ class RuleBase(BaseModel):
             "Revit MEP categories to filter by (i.e. object must belong to"
             " categories defined here). If empty, all categories are included."
         ),
-        column_width=200,
+        column_width=120,
     )
 
     operator: OperatorsEnum = Field(
@@ -63,7 +63,7 @@ class RuleBase(BaseModel):
             " required (e.g. has value operator)"
         ),
         autoui="ipyautoui.autowidgets.Combobox",
-        column_width=200,
+        column_width=150,
     )
 
     class Config:
