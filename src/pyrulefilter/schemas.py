@@ -111,7 +111,10 @@ class RuleSetBase(BaseModel):
         column_width=200,
     )
     description: str = Field(
-        None, description="optional description of rule set", column_width=300
+        "",
+        description="optional description of rule set",
+        column_width=300,
+        autoui="ipyautoui.autowidgets.TextArea",
     )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
