@@ -85,9 +85,7 @@ class Rule(RuleBase):
     )
 
 
-uniclass_property_code_name = html_link(
-    URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗"
-)
+uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
 uniclass_system_code_name = html_link(URL_UNICLASS_SYSTEMS, "UniclassSystemCode 🔗")
 rules_des = f"""
 each rule returns a boolean for the logical evaluation for every item from the requested categories.<br>
@@ -114,7 +112,7 @@ class RuleSetBase(BaseModel):
         "",
         description="optional description of rule set",
         column_width=300,
-        autoui="ipyautoui.autowidgets.TextArea",
+        autoui="ipyautoui.autowidgets.Textarea",
     )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
