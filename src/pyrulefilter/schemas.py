@@ -85,7 +85,9 @@ class Rule(RuleBase):
     )
 
 
-uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
+uniclass_property_code_name = html_link(
+    URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗"
+)
 uniclass_system_code_name = html_link(URL_UNICLASS_SYSTEMS, "UniclassSystemCode 🔗")
 rules_des = f"""
 each rule returns a boolean for the logical evaluation for every item from the requested categories.<br>
@@ -135,10 +137,6 @@ class RuleSet(RuleSetBase):
         description=rules_des, default_factory=lambda: [], format="dataframe"
     )
 
-    # NOTE: in future maybe make rules recursive (like Revit)
-    # i.e.
-    # rules: list[ty.Union[Rule, RuleSet]]
-
     class Config:
         allow_extra = True
         schema_extra = {"align_horizontal": False}
@@ -154,3 +152,47 @@ This is analogous to how
     + "<br>As such, rules defined are imported into Revit and are used to create Revit"
     " Schedules.<br><hr>"
 )
+
+
+class FilterRuleSetBase(BaseModel):
+    """defines a filter, which is a set of rule sets, used to define what appears in a schedule"""
+
+    name: str = Field(
+        "",
+        description="name of filter. indicates schedule name in Revit",
+        column_width=200,
+    )
+    description: str = Field(
+        "",
+        description="optional description of filter",
+        column_width=300,
+        autoui="ipyautoui.autowidgets.Textarea",
+    )
+    set_type: RuleSetType = Field(
+        default=RuleSetType.AND,
+        disabled=True,
+        description=(
+            "OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
+            " for the item to be included."
+        ),
+        column_width=100,
+    )
+
+    class Config:
+        allow_extra = True
+        orm_mode = True
+        title = "Filter Definition"
+
+
+class FilterRuleSet(FilterRuleSetBase):
+    rule_sets: list[RuleSet] = Field(default_factory=lambda: [], format="dataframe")
+
+    class Config:
+        allow_extra = True
+        schema_extra = {"align_horizontal": False}
+        orm_mode = True
+
+
+# NOTE: in future maybe make rules recursive (like Revit)
+# i.e.
+# rules: list[ty.Union[Rule, RuleSet]]
