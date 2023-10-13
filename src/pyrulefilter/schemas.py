@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import ConfigDict, BaseModel, Field
 from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
 import typing as ty
 
@@ -65,16 +65,12 @@ class RuleBase(BaseModel):
         autoui="ipyautoui.autowidgets.Combobox",
         column_width=150,
     )
-
-    class Config:
-        allow_extra = True
-        schema_extra = {
-            "align_horizontal": False,
-            "autoui": (
-                "__main__.RuleUi"
-            ),  # this explicitly defines RuleUi as the interface rather than AutoObject
-        }
-        orm_mode = True
+    model_config = ConfigDict(allow_extra=True, json_schema_extra={
+        "align_horizontal": False,
+        "autoui": (
+            "__main__.RuleUi"
+        ),  # this explicitly defines RuleUi as the interface rather than AutoObject
+    }, from_attributes=True)
 
 
 class Rule(RuleBase):
@@ -123,26 +119,14 @@ class RuleSetBase(BaseModel):
         ),
         column_width=100,
     )
-
-    class Config:
-        allow_extra = True
-        orm_mode = True
-        title = "Rule Set Definition"
+    model_config = ConfigDict(allow_extra=True, from_attributes=True, title="Rule Set Definition")
 
 
 class RuleSet(RuleSetBase):
     rules: list[Rule] = Field(
         description=rules_des, default_factory=lambda: [], format="dataframe"
     )
-
-    # NOTE: in future maybe make rules recursive (like Revit)
-    # i.e.
-    # rules: list[ty.Union[Rule, RuleSet]]
-
-    class Config:
-        allow_extra = True
-        schema_extra = {"align_horizontal": False}
-        orm_mode = True
+    model_config = ConfigDict(allow_extra=True, json_schema_extra={"align_horizontal": False}, from_attributes=True)
 
 
 RuleSet.__doc__ = (
