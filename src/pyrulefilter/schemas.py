@@ -47,7 +47,7 @@ class RuleBase(BaseModel):
             "Revit MEP categories to filter by (i.e. object must belong to"
             " categories defined here). If empty, all categories are included."
         ),
-        column_width=120,
+        json_schema_extra=dict(column_width=120),
     )
 
     operator: OperatorsEnum = Field(
@@ -62,22 +62,28 @@ class RuleBase(BaseModel):
             "Value to filter by. Evaluates to the appropriate type. Leave empty if none"
             " required (e.g. has value operator)"
         ),
-        autoui="ipyautoui.autowidgets.Combobox",
-        column_width=150,
+        json_schema_extra=dict(
+            autoui="ipyautoui.autowidgets.Combobox", column_width=150
+        ),
     )
-    model_config = ConfigDict(allow_extra=True, json_schema_extra={
-        "align_horizontal": False,
-        "autoui": (
-            "__main__.RuleUi"
-        ),  # this explicitly defines RuleUi as the interface rather than AutoObject
-    }, from_attributes=True)
+    model_config = ConfigDict(
+        allow_extra=True,
+        json_schema_extra={
+            "align_horizontal": False,
+            "autoui": (
+                "__main__.RuleUi"
+            ),  # this explicitly defines RuleUi as the interface rather than AutoObject
+        },
+        from_attributes=True,
+    )
 
 
 class Rule(RuleBase):
     parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
-        autoui="ipyautoui.autowidgets.Combobox",
-        column_width=200,
+        json_schema_extra=dict(
+            autoui="ipyautoui.autowidgets.Combobox", column_width=200
+        ),
     )
 
 
@@ -107,26 +113,32 @@ class RuleSetBase(BaseModel):
     description: str = Field(
         "",
         description="optional description of rule set",
-        column_width=300,
-        autoui="ipyautoui.autowidgets.Textarea",
+        json_schema_extra=dict(
+            column_width=300, autoui="ipyautoui.autowidgets.Textarea"
+        ),
     )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
-        disabled=True,
         description=(
             "OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
             " for the item to be included."
         ),
-        column_width=100,
+        json_schema_extra=dict(disabled=True, column_width=100),
     )
-    model_config = ConfigDict(allow_extra=True, from_attributes=True, title="Rule Set Definition")
+    model_config = ConfigDict(
+        allow_extra=True, from_attributes=True, title="Rule Set Definition"
+    )
 
 
 class RuleSet(RuleSetBase):
     rules: list[Rule] = Field(
         description=rules_des, default_factory=lambda: [], format="dataframe"
     )
-    model_config = ConfigDict(allow_extra=True, json_schema_extra={"align_horizontal": False}, from_attributes=True)
+    model_config = ConfigDict(
+        allow_extra=True,
+        json_schema_extra={"align_horizontal": False},
+        from_attributes=True,
+    )
 
 
 RuleSet.__doc__ = (
