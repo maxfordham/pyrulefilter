@@ -7,7 +7,8 @@ channels:
   - conda-forge
 dependencies:
   - python>=3.7
-  - pydantic
+  - pydantic>=2.4
+  - pytest
   - pip    
   - pip:
-    - git+ssh://git@github.com/maxfordham/pyuniclass.git@0.1.0
+    - git+ssh://git@github.com/maxfordham/pyuniclass.git@0.1.3
