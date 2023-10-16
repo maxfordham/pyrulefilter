@@ -54,7 +54,7 @@ class RuleBase(BaseModel):
         description=(
             "logical operator used to evaluate parameter value against value below"
         ),
-        column_width=125,
+        json_schema_extra=dict(column_width=125),
     )
     value: str = Field(
         "",
@@ -108,7 +108,7 @@ class RuleSetBase(BaseModel):
     name: str = Field(
         "",
         description="name of rule set. indicates schedule name in Revit",
-        column_width=200,
+        json_schema_extra=dict(column_width=200),
     )
     description: str = Field(
         "",
@@ -132,7 +132,9 @@ class RuleSetBase(BaseModel):
 
 class RuleSet(RuleSetBase):
     rules: list[Rule] = Field(
-        description=rules_des, default_factory=lambda: [], format="dataframe"
+        description=rules_des,
+        default_factory=lambda: [],
+        json_schema_extra=dict(format="dataframe"),
     )
     model_config = ConfigDict(
         allow_extra=True,
