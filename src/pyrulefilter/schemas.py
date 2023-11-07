@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import ConfigDict, BaseModel, Field
 from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
 import typing as ty
 
@@ -47,14 +47,14 @@ class RuleBase(BaseModel):
             "Revit MEP categories to filter by (i.e. object must belong to"
             " categories defined here). If empty, all categories are included."
         ),
-        column_width=120,
+        json_schema_extra=dict(column_width=120),
     )
 
     operator: OperatorsEnum = Field(
         description=(
             "logical operator used to evaluate parameter value against value below"
         ),
-        column_width=125,
+        json_schema_extra=dict(column_width=125),
     )
     value: str = Field(
         "",
@@ -62,26 +62,24 @@ class RuleBase(BaseModel):
             "Value to filter by. Evaluates to the appropriate type. Leave empty if none"
             " required (e.g. has value operator)"
         ),
-        autoui="ipyautoui.autowidgets.Combobox",
-        column_width=150,
+        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=150),
     )
-
-    class Config:
-        allow_extra = True
-        schema_extra = {
+    model_config = ConfigDict(
+        allow_extra=True,
+        json_schema_extra={
             "align_horizontal": False,
             "autoui": (
                 "__main__.RuleUi"
             ),  # this explicitly defines RuleUi as the interface rather than AutoObject
-        }
-        orm_mode = True
+        },
+        from_attributes=True,
+    )
 
 
 class Rule(RuleBase):
     parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
-        autoui="ipyautoui.autowidgets.Combobox",
-        column_width=200,
+        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=200),
     )
 
 
@@ -106,43 +104,37 @@ class RuleSetBase(BaseModel):
     name: str = Field(
         "",
         description="name of rule set. indicates schedule name in Revit",
-        column_width=200,
+        json_schema_extra=dict(column_width=200),
     )
     description: str = Field(
         "",
         description="optional description of rule set",
-        column_width=300,
-        autoui="ipyautoui.autowidgets.Textarea",
+        json_schema_extra=dict(column_width=300, autoui="ipywidgets.Textarea"),
     )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
-        disabled=True,
         description=(
             "OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
             " for the item to be included."
         ),
-        column_width=100,
+        json_schema_extra=dict(disabled=True, column_width=100),
     )
-
-    class Config:
-        allow_extra = True
-        orm_mode = True
-        title = "Rule Set Definition"
+    model_config = ConfigDict(
+        allow_extra=True, from_attributes=True, title="Rule Set Definition"
+    )
 
 
 class RuleSet(RuleSetBase):
     rules: list[Rule] = Field(
-        description=rules_des, default_factory=lambda: [], format="dataframe"
+        description=rules_des,
+        default_factory=lambda: [],
+        json_schema_extra=dict(format="dataframe"),
     )
-
-    # NOTE: in future maybe make rules recursive (like Revit)
-    # i.e.
-    # rules: list[ty.Union[Rule, RuleSet]]
-
-    class Config:
-        allow_extra = True
-        schema_extra = {"align_horizontal": False}
-        orm_mode = True
+    model_config = ConfigDict(
+        allow_extra=True,
+        json_schema_extra={"align_horizontal": False},
+        from_attributes=True,
+    )
 
 
 RuleSet.__doc__ = (
