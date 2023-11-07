@@ -46,7 +46,7 @@ def get_typespec(type_spec_id: int) -> dict:
     AECTEMPLATER_CNAME = "https://aectemplater.maxfordham.com"
     url = AECTEMPLATER_CNAME + f"/type_spec/{str(type_spec_id)}"
     r = requests.get(url=url)
-    return r.model_dump_json()
+    return r.json()
 
 
 class TestRules:

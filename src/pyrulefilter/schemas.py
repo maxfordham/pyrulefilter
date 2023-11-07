@@ -62,9 +62,7 @@ class RuleBase(BaseModel):
             "Value to filter by. Evaluates to the appropriate type. Leave empty if none"
             " required (e.g. has value operator)"
         ),
-        json_schema_extra=dict(
-            autoui="ipyautoui.autowidgets.Combobox", column_width=150
-        ),
+        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=150),
     )
     model_config = ConfigDict(
         allow_extra=True,
@@ -81,9 +79,7 @@ class RuleBase(BaseModel):
 class Rule(RuleBase):
     parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
-        json_schema_extra=dict(
-            autoui="ipyautoui.autowidgets.Combobox", column_width=200
-        ),
+        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=200),
     )
 
 
@@ -113,9 +109,7 @@ class RuleSetBase(BaseModel):
     description: str = Field(
         "",
         description="optional description of rule set",
-        json_schema_extra=dict(
-            column_width=300, autoui="ipyautoui.autowidgets.Textarea"
-        ),
+        json_schema_extra=dict(column_width=300, autoui="ipywidgets.Textarea"),
     )
     set_type: RuleSetType = Field(
         default=RuleSetType.AND,
