@@ -1,6 +1,11 @@
-from pydantic import ConfigDict, BaseModel, Field
-from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
 import typing as ty
+from pydantic import ConfigDict, BaseModel, Field
+from pyrulefilter.enums import (
+    FilterCategoriesEnum,
+    OperatorsEnum,
+    RuleSetType,
+)
+from aectemplater_schemas.enumerations import CategoriesEnum
 
 
 class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
@@ -39,102 +44,40 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
 )
 
 
-class RuleBase(BaseModel):
-    categories: ty.Optional[list[FilterCategoriesEnum]] = Field(
-        default=None,
+class Rule(BaseModel):
+    categories: list[CategoriesEnum] = Field(
+        default=[],
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
-        description=(
-            "Revit MEP categories to filter by (i.e. object must belong to"
-            " categories defined here). If empty, all categories are included."
-        ),
-        json_schema_extra=dict(column_width=120),
+        description="Revit MEP categories to filter by (i.e. revit object must belong to categories defined here). If empty, all categories are included.",
     )
-
+    parameter: str = Field(
+        description="name of schedule parameter against which to apply filter rule",
+    )
     operator: OperatorsEnum = Field(
-        description=(
-            "logical operator used to evaluate parameter value against value below"
-        ),
-        json_schema_extra=dict(column_width=125),
+        title="Logical Operator",
+        description="logical operator used to evaluate parameter value against value below",
     )
     value: str = Field(
         "",
-        description=(
-            "Value to filter by. Evaluates to the appropriate type. Leave empty if none"
-            " required (e.g. has value operator)"
-        ),
-        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=150),
+        description="Value to filter by. Evaluates to the appropriate type. Leave empty if none required (e.g. has value operator)",
     )
     model_config = ConfigDict(
-        allow_extra=True,
-        json_schema_extra={
-            "align_horizontal": False,
-            "autoui": (
-                "__main__.RuleUi"
-            ),  # this explicitly defines RuleUi as the interface rather than AutoObject
-        },
-        from_attributes=True,
+        json_schema_extra=dict(autoui="ipyautoui.demo_schemas.ruleset.rule_ui")
     )
 
 
-class Rule(RuleBase):
-    parameter: str = Field(
-        description="name of schedule parameter against which to apply filter rule",
-        json_schema_extra=dict(autoui="ipywidgets.Combobox", column_width=200),
-    )
+RuleSet = ty.ForwardRef("RuleSet")
 
 
-uniclass_property_code_name = html_link(URL_UNICLASS_PRODUCTS, "UniclassPropertyCode 🔗")
-uniclass_system_code_name = html_link(URL_UNICLASS_SYSTEMS, "UniclassSystemCode 🔗")
-rules_des = f"""
-each rule returns a boolean for the logical evaluation for every item from the requested categories.<br>
-An example pattern is to:
-
-<ul>
-    <li>leave "Categories" blank, thus applying the rule to all items in all categories</li>
-    <li>select {HTMLLINK_UNICLASS_PRODUCTS} / {HTMLLINK_UNICLASS_SYSTEMS} as the "Parameter"</li>
-    <li>select "begins with" as the operator</li>
-    <li>select the required code and subcode for "Value"</li>
-</ul>
+class RuleSet(BaseModel):
+    set_type: RuleSetType = Field(default=RuleSetType.AND, disabled=True)
+    rule: ty.List[ty.Union[Rule, RuleSet]] = Field(
+        description="""
+rules return a boolean for the logical evaluation defined below for every item within the categories defined
 """
-
-
-class RuleSetBase(BaseModel):
-    """defines a set of filter rules used to define what appears in a schedule"""
-
-    name: str = Field(
-        "",
-        description="name of rule set. indicates schedule name in Revit",
-        json_schema_extra=dict(column_width=200),
-    )
-    description: str = Field(
-        "",
-        description="optional description of rule set",
-        json_schema_extra=dict(column_width=300, autoui="ipywidgets.Textarea"),
-    )
-    set_type: RuleSetType = Field(
-        default=RuleSetType.AND,
-        description=(
-            "OR/AND. OR(/AND) -> one(/all) rule(/s) must evaluate to True"
-            " for the item to be included."
-        ),
-        json_schema_extra=dict(disabled=True, column_width=100),
-    )
-    model_config = ConfigDict(
-        allow_extra=True, from_attributes=True, title="Rule Set Definition"
     )
 
-
-class RuleSet(RuleSetBase):
-    rules: list[Rule] = Field(
-        description=rules_des,
-        default_factory=lambda: [],
-        json_schema_extra=dict(format="dataframe"),
-    )
-    model_config = ConfigDict(
-        allow_extra=True,
-        json_schema_extra={"align_horizontal": False},
-        from_attributes=True,
-    )
+    model_config = ConfigDict(json_schema_extra=dict(open_nested=True))
 
 
 RuleSet.__doc__ = (
