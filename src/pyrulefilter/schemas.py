@@ -50,7 +50,7 @@ class Rule(BaseModel):
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
         description="Revit MEP categories to filter by (i.e. revit object must belong to categories defined here). If empty, all categories are included.",
     )
-    parameter: str = Field(
+    property: str = Field(
         description="name of schedule parameter against which to apply filter rule",
     )
     operator: OperatorsEnum = Field(
