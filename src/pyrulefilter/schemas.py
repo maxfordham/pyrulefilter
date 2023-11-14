@@ -50,8 +50,9 @@ class Rule(BaseModel):
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
         description="Revit MEP categories to filter by (i.e. revit object must belong to categories defined here). If empty, all categories are included.",
     )
-    property: str = Field(
+    parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
+        # alias="property",
     )
     operator: OperatorsEnum = Field(
         title="Logical Operator",
@@ -70,7 +71,7 @@ RuleSet = ty.ForwardRef("RuleSet")
 
 
 class RuleSet(BaseModel):
-    set_type: RuleSetType = Field(default=RuleSetType.AND, disabled=True)
+    set_type: RuleSetType = Field(default=RuleSetType.OR, disabled=True)
     rule: ty.List[ty.Union[Rule, RuleSet]] = Field(
         description="""
 rules return a boolean for the logical evaluation defined below for every item within the categories defined
