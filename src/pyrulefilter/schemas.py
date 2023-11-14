@@ -5,7 +5,6 @@ from pyrulefilter.enums import (
     OperatorsEnum,
     RuleSetType,
 )
-from aectemplater_schemas.enumerations import CategoriesEnum
 
 
 class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
@@ -43,9 +42,16 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
     URL_UNICLASS_PRODUCTS, "Uniclass Product codes 🔗"
 )
 
+from typing_extensions import Annotated
+from pydantic import BaseModel, BeforeValidator
+
+FilterCategories = Annotated[
+    list[FilterCategoriesEnum], BeforeValidator(lambda v: [] if v is None else v)
+]
+
 
 class Rule(BaseModel):
-    categories: list[CategoriesEnum] = Field(
+    categories: FilterCategories = Field(
         default=[],
         title="Categories",  # TODO: this is pydantic bug (should generate title from field name)
         description="Revit MEP categories to filter by (i.e. revit object must belong to categories defined here). If empty, all categories are included.",
@@ -78,7 +84,9 @@ rules return a boolean for the logical evaluation defined below for every item w
 """
     )
 
-    model_config = ConfigDict(json_schema_extra=dict(open_nested=True))
+    model_config = ConfigDict(
+        title="Rule Set Definition", json_schema_extra=dict(open_nested=True)
+    )
 
 
 RuleSet.__doc__ = (
