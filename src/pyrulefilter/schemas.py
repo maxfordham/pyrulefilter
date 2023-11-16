@@ -77,7 +77,9 @@ RuleSet = ty.ForwardRef("RuleSet")
 
 
 class RuleSet(BaseModel):
-    set_type: RuleSetType = Field(default=RuleSetType.OR, disabled=True)
+    set_type: RuleSetType = Field(
+        default=RuleSetType.OR, json_schema_extra=dict(disabled=True)
+    )
     rule: ty.List[ty.Union[Rule, RuleSet]] = Field(
         description="""
 rules return a boolean for the logical evaluation defined below for every item within the categories defined
