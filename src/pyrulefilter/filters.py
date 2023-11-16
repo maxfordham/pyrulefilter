@@ -211,7 +211,7 @@ def rule_check_dict(property_data: dict, rule: Rule, category=None) -> bool:
 def ruleset_check_dict(
     property_data: dict, rule_set: RuleSet, category: ty.Union[None, str] = None
 ) -> bool:
-    li = [rule_check_dict(property_data, r, category=category) for r in rule_set.rules]
+    li = [rule_check_dict(property_data, r, category=category) for r in rule_set.rule]
     fn_and = lambda li: False if False in li else True
     fn_or = lambda li: True if True in li else False
 

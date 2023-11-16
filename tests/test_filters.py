@@ -21,7 +21,7 @@ import pytest
 #     operator=OperatorsEnum.GreaterOrEqual,
 #     value=150,
 # )
-# rule_set = RuleSet(set_type=set_type, rules=[rule])
+# rule_set = RuleSet(set_type=set_type, rule =[rule])
 
 # example2: pyuniclass
 GROUP = "Pr_70_60_36"  # Heat emitters
@@ -77,12 +77,12 @@ class TestRules:
         r1 = Rule(parameter="a", value="ave", operator=OperatorsEnum.BeginsWith)
         r2 = Rule(parameter="a", value="good", operator=OperatorsEnum.Contains)
         r3 = Rule(parameter="b", value="good", operator=OperatorsEnum.Contains)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2, r3])
+        rule_set = RuleSet(set_type=RuleSetType.AND, rule=[r1, r2, r3])
 
         assert ruleset_check_dict(data, rule_set)
 
         r4 = Rule(parameter="a", value="day", operator=OperatorsEnum.NotContains)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2, r3, r4])
+        rule_set = RuleSet(set_type=RuleSetType.AND, rule=[r1, r2, r3, r4])
         check = ruleset_check_dict(data, rule_set)
         assert not check
 
@@ -92,13 +92,13 @@ class TestRules:
             {"a": "ave a bad day", "b": "be bad"},
         ]
         r2 = Rule(parameter="a", value="good", operator=OperatorsEnum.Contains)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r2])
+        rule_set = RuleSet(set_type=RuleSetType.AND, rule=[r2])
 
         assert ruleset_check_dicts(data, rule_set) == [True, False]
 
         r1 = Rule(parameter="a", value="day", operator=OperatorsEnum.Contains)
         r2 = Rule(parameter="b", value="be", operator=OperatorsEnum.BeginsWith)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1, r2])
+        rule_set = RuleSet(set_type=RuleSetType.AND, rule=[r1, r2])
         check = ruleset_check_dicts(data, rule_set)
         assert check == [True, True]
 
@@ -119,7 +119,7 @@ class TestRules:
             operator=OperatorsEnum.Contains,
         )
         # r2 = Rule(parameter="TypeReference", value="2", operator=OperatorsEnum.Greater)
-        rule_set = RuleSet(set_type=RuleSetType.AND, rules=[r1])  # , r2
+        rule_set = RuleSet(set_type=RuleSetType.AND, rule=[r1])  # , r2
 
         check = ruleset_check_dicts(data, rule_set, li_categories=categories)
         assert check == [True, False]
