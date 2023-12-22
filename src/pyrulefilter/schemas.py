@@ -58,7 +58,7 @@ class Rule(BaseModel):
     )
     parameter: str = Field(
         description="name of schedule parameter against which to apply filter rule",
-        # alias="property",
+        json_schema_extra=dict(autoui="ipywidgets.Combobox"),
     )
     operator: OperatorsEnum = Field(
         title="Logical Operator",
@@ -67,6 +67,7 @@ class Rule(BaseModel):
     value: str = Field(
         "",
         description="Value to filter by. Evaluates to the appropriate type. Leave empty if none required (e.g. has value operator)",
+        json_schema_extra=dict(autoui="ipywidgets.Combobox"),
     )
     model_config = ConfigDict(
         json_schema_extra=dict(autoui="ipyautoui.demo_schemas.ruleset.rule_ui")
@@ -77,9 +78,7 @@ RuleSet = ty.ForwardRef("RuleSet")
 
 
 class RuleSet(BaseModel):
-    set_type: RuleSetType = Field(
-        default=RuleSetType.OR, json_schema_extra=dict(disabled=True)
-    )
+    set_type: RuleSetType = Field(default=RuleSetType.OR)
     rule: ty.List[ty.Union[Rule, RuleSet]] = Field(
         description="""
 rules return a boolean for the logical evaluation defined below for every item within the categories defined
