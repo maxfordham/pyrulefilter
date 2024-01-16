@@ -85,9 +85,7 @@ rules return a boolean for the logical evaluation defined below for every item w
 """
     )
 
-    model_config = ConfigDict(
-        title="Rule Set Definition", json_schema_extra=dict(open_nested=True)
-    )
+    model_config = ConfigDict(title="RuleSet")
 
 
 RuleSet.__doc__ = (
