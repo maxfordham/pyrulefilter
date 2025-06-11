@@ -1,10 +1,11 @@
 import typing as ty
-from pydantic import ConfigDict, BaseModel, Field
+from pydantic import ConfigDict, BaseModel, Field, BeforeValidator
 from pyrulefilter.enums import (
     FilterCategoriesEnum,
     OperatorsEnum,
     RuleSetType,
 )
+from typing_extensions import Annotated
 
 
 class BaseModel(BaseModel):  # https://github.com/pydantic/pydantic/issues/1836
@@ -42,8 +43,6 @@ HTMLLINK_UNICLASS_PRODUCTS = html_link(
     URL_UNICLASS_PRODUCTS, "Uniclass Product codes 🔗"
 )
 
-from typing_extensions import Annotated
-from pydantic import BaseModel, BeforeValidator
 
 FilterCategories = Annotated[
     list[FilterCategoriesEnum], BeforeValidator(lambda v: [] if v is None else v)

@@ -20,8 +20,8 @@ def read_csv(p: pathlib.Path):
 def get_categories(filter=True):
     li = read_csv(PATH_PYRULEFILTER_CATEGORIES)
     if filter:
-        li = [l for l in li if bool(int(l["Include"]))]
-    return {l["Category"]: l["Name"] for l in li}
+        li = [x for x in li if bool(int(x["Include"]))]
+    return {x["Category"]: x["Name"] for x in li}
 
 
 class OperatorsEnum(str, Enum):
@@ -56,29 +56,3 @@ class RuleSetType(str, Enum):
     OR = "OR"
 
 
-# REF
-# {
-#     "revit_version": "2022",
-#     "revit_version_name": "Autodesk Revit 2022",
-#     "revit_api_query": "Autodesk.Revit.DB.ParameterFilterRuleFactory",
-#     "revit_api_docs": "https://www.revitapidocs.com/2023/317755a4-24ba-9f36-7639-f6fb2aa5a1a7.htm",
-#     "data": {
-#         "CreateBeginsWithRule": "begins with",
-#         "CreateContainsRule": "contains",
-#         "CreateEndsWithRule": "ends with",
-#         "CreateEqualsRule": "equals",
-#         "CreateGreaterOrEqualRule": "is greater than or equal to",
-#         "CreateGreaterRule": "is greater than",
-#         "CreateHasNoValueParameterRule": "has no value",
-#         "CreateHasValueParameterRule": "has value",
-#         "CreateIsAssociatedWithGlobalParameterRule": "?",
-#         "CreateIsNotAssociatedWithGlobalParameterRule": "?",
-#         "CreateLessOrEqualRule": "is less than or equal to",
-#         "CreateLessRule": "is less than",
-#         "CreateNotBeginsWithRule": "does not begin with",
-#         "CreateNotContainsRule": "does not contain",
-#         "CreateNotEndsWithRule": "does not end with",
-#         "CreateNotEqualsRule": "dont not equal",
-#         "CreateSharedParameterApplicableRule": "?"
-#     }
-# }
