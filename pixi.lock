@@ -2213,8 +2213,8 @@ packages:
   timestamp: 1736243563082
 - pypi: ./
   name: pyrulefilter
-  version: 0.4.3.dev0+ge0fcb79.d20250611
-  sha256: 6414ae8df2c2ad734095be52cf3d8a2d12fb92cee4b5029b312ceba0c345d5d0
+  version: 0.4.3.dev6+ga7204df.d20250611
+  sha256: c701532dfdb48202bd64e52c532b3c9ae6c89d6845f66f2d3837a7da7f34d1aa
   requires_dist:
   - pydantic>2
   requires_python: '>=3.11'

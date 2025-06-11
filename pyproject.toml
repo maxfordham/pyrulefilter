@@ -49,6 +49,5 @@ tests = "pytest"
 check = "ruff check"
 format = "ruff format"
 build = "hatch build"
-test-p = "pytest tests/test_pytest_examples.py"
 docs = {cmd = "quarto render", cwd = "docs"}
 quartodoc = {cmd = "quartodoc build", cwd = "docs"}
