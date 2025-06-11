@@ -1,0 +1,7 @@
+# Function reference {.doc .doc-index}
+
+## Some functions
+
+| | |
+| --- | --- |
+| [operators](operators.qmd#pyrulefilter.operators) |  |

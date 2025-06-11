@@ -1,0 +1,50 @@
+---
+title: "pyrulefilter"
+---
+
+Use python to simply check if a flat dict of data complies with a rule and return a boolean value.
+The main benefit is that both the data and the rule can be defined as json objects and stored
+as data.
+
+```{python}
+
+from pyrulefilter import rule_check_dict, OperatorsEnum, Rule
+
+data = {"a": "ave a good day", "b": "ave a mediocre day"}
+r1 = Rule(parameter="a", value="ave", operator=OperatorsEnum.BeginsWith)
+rule_check_dict(data, r1)
+
+```
+
+
+:::{.callout-note collapse="true" title="RuleSet definitions and operators match Revit"}
+This enables Rulesets to be declared externally and programmaticlly generated in REvit using the Revit API. 
+
+```json
+{
+    "revit_version": "2022",
+    "revit_version_name": "Autodesk Revit 2022",
+    "revit_api_query": "Autodesk.Revit.DB.ParameterFilterRuleFactory",
+    "revit_api_docs": "https://www.revitapidocs.com/2023/317755a4-24ba-9f36-7639-f6fb2aa5a1a7.htm",
+    "operators": {
+        "CreateBeginsWithRule": "begins with",
+        "CreateContainsRule": "contains",
+        "CreateEndsWithRule": "ends with",
+        "CreateEqualsRule": "equals",
+        "CreateGreaterOrEqualRule": "is greater than or equal to",
+        "CreateGreaterRule": "is greater than",
+        "CreateHasNoValueParameterRule": "has no value",
+        "CreateHasValueParameterRule": "has value",
+        "CreateIsAssociatedWithGlobalParameterRule": "?",
+        "CreateIsNotAssociatedWithGlobalParameterRule": "?",
+        "CreateLessOrEqualRule": "is less than or equal to",
+        "CreateLessRule": "is less than",
+        "CreateNotBeginsWithRule": "does not begin with",
+        "CreateNotContainsRule": "does not contain",
+        "CreateNotEndsWithRule": "does not end with",
+        "CreateNotEqualsRule": "dont not equal",
+        "CreateSharedParameterApplicableRule": "?"
+    }
+}
+```
+:::
