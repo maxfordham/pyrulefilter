@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "pyrulefilter",
+    "section": "",
+    "text": "Use python to simply check if a flat dict of data complies with a rule and return a boolean value. The main benefit is that both the data and the rule can be defined as json objects and stored as data.\n\nfrom pyrulefilter import rule_check_dict, OperatorsEnum, Rule\n\ndata = {\"a\": \"ave a good day\", \"b\": \"ave a mediocre day\"}\nr1 = Rule(parameter=\"a\", value=\"ave\", operator=OperatorsEnum.BeginsWith)\nrule_check_dict(data, r1)\n\nTrue\n\n\n\n\n\n\n\n\nRuleSet definitions and operators match Revit\n\n\n\n\n\nThis enables Rulesets to be declared externally and programmaticlly generated in REvit using the Revit API.\n{\n    \"revit_version\": \"2022\",\n    \"revit_version_name\": \"Autodesk Revit 2022\",\n    \"revit_api_query\": \"Autodesk.Revit.DB.ParameterFilterRuleFactory\",\n    \"revit_api_docs\": \"https://www.revitapidocs.com/2023/317755a4-24ba-9f36-7639-f6fb2aa5a1a7.htm\",\n    \"operators\": {\n        \"CreateBeginsWithRule\": \"begins with\",\n        \"CreateContainsRule\": \"contains\",\n        \"CreateEndsWithRule\": \"ends with\",\n        \"CreateEqualsRule\": \"equals\",\n        \"CreateGreaterOrEqualRule\": \"is greater than or equal to\",\n        \"CreateGreaterRule\": \"is greater than\",\n        \"CreateHasNoValueParameterRule\": \"has no value\",\n        \"CreateHasValueParameterRule\": \"has value\",\n        \"CreateIsAssociatedWithGlobalParameterRule\": \"?\",\n        \"CreateIsNotAssociatedWithGlobalParameterRule\": \"?\",\n        \"CreateLessOrEqualRule\": \"is less than or equal to\",\n        \"CreateLessRule\": \"is less than\",\n        \"CreateNotBeginsWithRule\": \"does not begin with\",\n        \"CreateNotContainsRule\": \"does not contain\",\n        \"CreateNotEndsWithRule\": \"does not end with\",\n        \"CreateNotEqualsRule\": \"dont not equal\",\n        \"CreateSharedParameterApplicableRule\": \"?\"\n    }\n}"
+  },
+  {
+    "objectID": "reference/operators.html",
+    "href": "reference/operators.html",
+    "title": "operators",
+    "section": "",
+    "text": "operators\n\n\n\n\n\nName\nDescription\n\n\n\n\ncontains\nCheck a in b.\n\n\nendswith\nCheck a endswith b\n\n\nisnone\nCheck a isnone.\n\n\nnot_contains\nCheck a not in b.\n\n\nnot_endswith\nCheck a not_endswith b.\n\n\nnot_isnone\nCheck a isnone.\n\n\nnot_startswith\nCheck a not startswith b.\n\n\nstartswith\nCheck a startswith b.\n\n\n\n\n\noperators.contains(a, b)\nCheck a in b.\nfrom pyrulefilter.operators import contains\n\nprint(contains(\"hello\", \"hell\"))  \n#&gt; True\nprint(contains(\"heel\", \"hello\"))  \n#&gt; False\n\n\n\noperators.endswith(a, b)\nCheck a endswith b\nfrom pyrulefilter.operators import endswith\n\nprint(endswith(\"hello\", \"lo\"))\n#&gt; True\nprint(endswith(\"hello\", \"elo\"))\n#&gt; False\n\n\n\noperators.isnone(a, b=None)\nCheck a isnone.\nfrom pyrulefilter.operators import isnone\n\nprint(isnone(\"hello\"))\n#&gt; False\nprint(isnone(None))\n#&gt; True\n\n\n\noperators.not_contains(a, b)\nCheck a not in b.\nfrom pyrulefilter.operators import not_contains\n\nprint(not_contains(\"hello\", \"hell\"))\n#&gt; False\nprint(not_contains(\"heel\", \"hello\"))\n#&gt; True\n\n\n\noperators.not_endswith(a, b)\nCheck a not_endswith b.\nfrom pyrulefilter.operators import not_endswith\n\nprint(not_endswith(\"hello\", \"lo\"))\n#&gt; False\nprint(not_endswith(\"hello\", \"elo\"))\n#&gt; True\n\n\n\noperators.not_isnone(a, b=None)\nCheck a isnone.\nfrom pyrulefilter.operators import not_isnone\n\nprint(not_isnone(\"hello\"))\n#&gt; True\nprint(not_isnone(None))\n#&gt; False\n\n\n\noperators.not_startswith(a, b)\nCheck a not startswith b.\nfrom pyrulefilter.operators import not_startswith\n\nprint(not_startswith(\"hello\", \"hell\"))\n#&gt; False\nprint(not_startswith(\"heel\", \"hello\"))\n#&gt; True\n\n\n\noperators.startswith(a, b)\nCheck a startswith b.\nfrom pyrulefilter.operators import startswith\n\nprint(startswith(\"hello\", \"hell\"))\n#&gt; True\nprint(startswith(\"heel\", \"hello\"))\n#&gt; False"
+  },
+  {
+    "objectID": "reference/operators.html#functions",
+    "href": "reference/operators.html#functions",
+    "title": "operators",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ncontains\nCheck a in b.\n\n\nendswith\nCheck a endswith b\n\n\nisnone\nCheck a isnone.\n\n\nnot_contains\nCheck a not in b.\n\n\nnot_endswith\nCheck a not_endswith b.\n\n\nnot_isnone\nCheck a isnone.\n\n\nnot_startswith\nCheck a not startswith b.\n\n\nstartswith\nCheck a startswith b.\n\n\n\n\n\noperators.contains(a, b)\nCheck a in b.\nfrom pyrulefilter.operators import contains\n\nprint(contains(\"hello\", \"hell\"))  \n#&gt; True\nprint(contains(\"heel\", \"hello\"))  \n#&gt; False\n\n\n\noperators.endswith(a, b)\nCheck a endswith b\nfrom pyrulefilter.operators import endswith\n\nprint(endswith(\"hello\", \"lo\"))\n#&gt; True\nprint(endswith(\"hello\", \"elo\"))\n#&gt; False\n\n\n\noperators.isnone(a, b=None)\nCheck a isnone.\nfrom pyrulefilter.operators import isnone\n\nprint(isnone(\"hello\"))\n#&gt; False\nprint(isnone(None))\n#&gt; True\n\n\n\noperators.not_contains(a, b)\nCheck a not in b.\nfrom pyrulefilter.operators import not_contains\n\nprint(not_contains(\"hello\", \"hell\"))\n#&gt; False\nprint(not_contains(\"heel\", \"hello\"))\n#&gt; True\n\n\n\noperators.not_endswith(a, b)\nCheck a not_endswith b.\nfrom pyrulefilter.operators import not_endswith\n\nprint(not_endswith(\"hello\", \"lo\"))\n#&gt; False\nprint(not_endswith(\"hello\", \"elo\"))\n#&gt; True\n\n\n\noperators.not_isnone(a, b=None)\nCheck a isnone.\nfrom pyrulefilter.operators import not_isnone\n\nprint(not_isnone(\"hello\"))\n#&gt; True\nprint(not_isnone(None))\n#&gt; False\n\n\n\noperators.not_startswith(a, b)\nCheck a not startswith b.\nfrom pyrulefilter.operators import not_startswith\n\nprint(not_startswith(\"hello\", \"hell\"))\n#&gt; False\nprint(not_startswith(\"heel\", \"hello\"))\n#&gt; True\n\n\n\noperators.startswith(a, b)\nCheck a startswith b.\nfrom pyrulefilter.operators import startswith\n\nprint(startswith(\"hello\", \"hell\"))\n#&gt; True\nprint(startswith(\"heel\", \"hello\"))\n#&gt; False"
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "operators"
+  },
+  {
+    "objectID": "reference/index.html#some-functions",
+    "href": "reference/index.html#some-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "operators"
+  }
+]
