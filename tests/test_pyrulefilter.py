@@ -1,16 +1,29 @@
-from pyrulefilter.filters import (
+# from pyrulefilter.filters import (
+#     RuleSetType,
+#     Rule,
+#     RuleSet,
+# )  # , Docum    RuleSet #ScheduleRuleSet,
+# from pyrulefilter.enums import OperatorsEnum, FilterCategoriesEnum
+# from pyrulefilter import (
+#     operate_rule_on_value,
+#     rule_check_dict,
+#     ruleset_check_dict,
+#     ruleset_check_dicts,
+# )
+
+from pyrulefilter import (
     RuleSetType,
     Rule,
     RuleSet,
-)  # , Docum    RuleSet #ScheduleRuleSet,
-from pyrulefilter.enums import OperatorsEnum, FilterCategoriesEnum
-from pyrulefilter.filters import (
+    OperatorsEnum, 
+    FilterCategoriesEnum,
     operate_rule_on_value,
     rule_check_dict,
     ruleset_check_dict,
     ruleset_check_dicts,
-)
-from pyuniclass import UT
+) 
+
+
 import pytest
 
 # example1: TypeSpecification from aectemplater (2023-04-25)
@@ -50,7 +63,10 @@ def get_typespec(type_spec_id: int) -> dict:
 
 
 class TestRules:
+    @pytest.mark.skip
     def test_uniclass(self):
+        from pyuniclass import UT
+
         valid_codes = [
             value for value in UT.Pr.codes if operate_rule_on_value(value, rule1)
         ]

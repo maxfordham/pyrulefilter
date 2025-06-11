@@ -10,13 +10,14 @@ logger = logging.getLogger(__name__)
 def contains(a: str, b: str) -> bool:
     """Check a in b.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import contains
 
-        >>> contains("hello", "hell")
-        True
-        >>> contains("heel", "hello")
-        False
+    print(contains("hello", "hell"))  
+    #> True
+    print(contains("heel", "hello"))  
+    #> False
+    ```
     """
     return b in a
 
@@ -24,14 +25,14 @@ def contains(a: str, b: str) -> bool:
 def not_contains(a: str, b: str) -> bool:
     """Check a not in b.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import not_contains
 
-        >>> not_contains("hello", "hell")
-        False
-        >>> not_contains("heel", "hello")
-        True
-
+    print(not_contains("hello", "hell"))
+    #> False
+    print(not_contains("heel", "hello"))
+    #> True
+    ```
     """
     return b not in a
 
@@ -39,14 +40,14 @@ def not_contains(a: str, b: str) -> bool:
 def startswith(a: str, b: str) -> bool:
     """Check a startswith b.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import startswith
 
-        >>> startswith("hello", "hell")
-        True
-        >>> startswith("heel", "hello")
-        False
-
+    print(startswith("hello", "hell"))
+    #> True
+    print(startswith("heel", "hello"))
+    #> False
+    ```
     """
     return bool(a.startswith(b))
 
@@ -54,29 +55,29 @@ def startswith(a: str, b: str) -> bool:
 def not_startswith(a: str, b: str) -> bool:
     """Check a not startswith b.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import not_startswith
 
-        >>> not_startswith("hello", "hell")
-        False
-        >>> not_startswith("heel", "hello")
-        True
-
+    print(not_startswith("hello", "hell"))
+    #> False
+    print(not_startswith("heel", "hello"))
+    #> True
+    ```
     """
     return bool(not a.startswith(b))
 
 
 def endswith(a: str, b: str) -> bool:
-    """Check a endswith b.
+    """Check a endswith b
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import endswith
 
-        >>> endswith("hello", "lo")
-        True
-        >>> endswith("hello", "elo")
-        False
-
+    print(endswith("hello", "lo"))
+    #> True
+    print(endswith("hello", "elo"))
+    #> False
+    ```
     """
     return bool(a.endswith(b))
 
@@ -84,14 +85,14 @@ def endswith(a: str, b: str) -> bool:
 def not_endswith(a: str, b: str) -> bool:
     """Check a not_endswith b.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import not_endswith
 
-        >>> not_endswith("hello", "lo")
-        False
-        >>> not_endswith("hello", "elo")
-        True
-
+    print(not_endswith("hello", "lo"))
+    #> False
+    print(not_endswith("hello", "elo"))
+    #> True
+    ```
     """
     return bool(not a.endswith(b))
 
@@ -99,14 +100,14 @@ def not_endswith(a: str, b: str) -> bool:
 def isnone(a, b=None) -> bool:
     """Check a isnone.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import isnone
 
-        >>> isnone("hello")
-        False
-        >>> isnone(None)
-        True
-
+    print(isnone("hello"))
+    #> False
+    print(isnone(None))
+    #> True
+    ```
     """
     return a is None
 
@@ -114,14 +115,14 @@ def isnone(a, b=None) -> bool:
 def not_isnone(a, b=None) -> bool:
     """Check a isnone.
 
-    Examples
-    --------
+    ```py
+    from pyrulefilter.operators import not_isnone
 
-        >>> not_isnone("hello")
-        True
-        >>> not_isnone(None)
-        False
-
+    print(not_isnone("hello"))
+    #> True
+    print(not_isnone(None))
+    #> False
+    ```
     """
     return a is not None
 

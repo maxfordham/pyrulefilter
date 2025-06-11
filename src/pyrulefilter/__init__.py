@@ -1,6 +1,6 @@
 from pyrulefilter.schemas import Rule, RuleSet
 from pyrulefilter.enums import FilterCategoriesEnum, OperatorsEnum, RuleSetType
-from pyrulefilter.filters import MAP_OPERATORS
+from pyrulefilter.operators import MAP_OPERATORS
 import typing as ty
 import logging
 
