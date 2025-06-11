@@ -1,33 +1,19 @@
+[project]
+authors = [{name = "jgunstone", email = "j.gunstone@maxfordham.com"}]
+dependencies = [
+    "pydantic>2",
+    # "pyuniclass @ git+https://git@github.com/maxfordham/pyuniclass.git@0.1.4",
+]
+name = "pyrulefilter"
+requires-python = ">= 3.11"
+keywords = ["rules", "revit"]
+dynamic = ["version"]
+license = "BSD-3-Clause"
+license-files = ["licenses/BSD-3-Clause.txt"]
+
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
-
-[project]
-name = "pyrulefilter"
-description = ''
-readme = "README.md"
-requires-python = ">=3.7"
-license = "MIT"
-keywords = []
-authors = [{ name = "j.gunstone", email = "j.gunstone@maxfordham.com" }, { name = "o.hensby", email = "o.hensby@maxfordham.com" }]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-]
-dependencies = ["pydantic>2"]
-dynamic = ["version"]
-
-[project.urls]
-Documentation = "https://github.com/unknown/pyrulefilter#readme"
-Issues = "https://github.com/unknown/pyrulefilter/issues"
-Source = "https://github.com/unknown/pyrulefilter"
 
 [tool.hatch.version]
 source = "vcs"
@@ -35,22 +21,34 @@ source = "vcs"
 [tool.hatch.build.hooks.vcs]
 version-file = "src/pyrulefilter/_version.py"
 
-[tool.hatch.envs.default]
-dependencies = ["pytest", "pytest-cov", "pyuniclass"]
-[tool.hatch.envs.default.scripts]
-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/pyrulefilter --cov=tests {args}"
-no-cov = "cov --no-cov {args}"
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
 
-[[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310", "311"]
+[tool.pixi.pypi-dependencies]
+pyrulefilter = { path = ".", editable = true }
 
-[tool.coverage.run]
-branch = true
-parallel = true
-omit = ["src/pyrulefilter/__about__.py"]
+[tool.pixi.environments]
+dev = { features = ["dev"]}
 
-[tool.coverage.report]
-exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+[tool.pixi.feature.dev.pypi-dependencies]
+pytest-examples = "*"
 
-[tool.pytest.ini_options]
-pythonpath = [".", "src"]
+[tool.pixi.feature.dev.dependencies]
+pytest = "*"
+hatch = "*"
+ruff = "*"
+jupyter = "*"
+nbformat = "*"
+quarto = "*"
+quartodoc = "*"
+
+[tool.pixi.tasks]
+[tool.pixi.feature.dev.tasks]
+tests = "pytest"
+check = "ruff check"
+format = "ruff format"
+build = "hatch build"
+test-p = "pytest tests/test_pytest_examples.py"
+docs = {cmd = "quarto render", cwd = "docs"}
+quartodoc = {cmd = "quartodoc build", cwd = "docs"}
