@@ -1,0 +1,154 @@
+# operators { #pyrulefilter.operators }
+
+`operators`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [contains](#pyrulefilter.operators.contains) | Check a in b. |
+| [endswith](#pyrulefilter.operators.endswith) | Check a endswith b |
+| [isnone](#pyrulefilter.operators.isnone) | Check a isnone. |
+| [not_contains](#pyrulefilter.operators.not_contains) | Check a not in b. |
+| [not_endswith](#pyrulefilter.operators.not_endswith) | Check a not_endswith b. |
+| [not_isnone](#pyrulefilter.operators.not_isnone) | Check a isnone. |
+| [not_startswith](#pyrulefilter.operators.not_startswith) | Check a not startswith b. |
+| [startswith](#pyrulefilter.operators.startswith) | Check a startswith b. |
+
+### contains { #pyrulefilter.operators.contains }
+
+```python
+operators.contains(a, b)
+```
+
+Check a in b.
+
+```py
+from pyrulefilter.operators import contains
+
+print(contains("hello", "hell"))  
+#> True
+print(contains("heel", "hello"))  
+#> False
+```
+
+### endswith { #pyrulefilter.operators.endswith }
+
+```python
+operators.endswith(a, b)
+```
+
+Check a endswith b
+
+```py
+from pyrulefilter.operators import endswith
+
+print(endswith("hello", "lo"))
+#> True
+print(endswith("hello", "elo"))
+#> False
+```
+
+### isnone { #pyrulefilter.operators.isnone }
+
+```python
+operators.isnone(a, b=None)
+```
+
+Check a isnone.
+
+```py
+from pyrulefilter.operators import isnone
+
+print(isnone("hello"))
+#> False
+print(isnone(None))
+#> True
+```
+
+### not_contains { #pyrulefilter.operators.not_contains }
+
+```python
+operators.not_contains(a, b)
+```
+
+Check a not in b.
+
+```py
+from pyrulefilter.operators import not_contains
+
+print(not_contains("hello", "hell"))
+#> False
+print(not_contains("heel", "hello"))
+#> True
+```
+
+### not_endswith { #pyrulefilter.operators.not_endswith }
+
+```python
+operators.not_endswith(a, b)
+```
+
+Check a not_endswith b.
+
+```py
+from pyrulefilter.operators import not_endswith
+
+print(not_endswith("hello", "lo"))
+#> False
+print(not_endswith("hello", "elo"))
+#> True
+```
+
+### not_isnone { #pyrulefilter.operators.not_isnone }
+
+```python
+operators.not_isnone(a, b=None)
+```
+
+Check a isnone.
+
+```py
+from pyrulefilter.operators import not_isnone
+
+print(not_isnone("hello"))
+#> True
+print(not_isnone(None))
+#> False
+```
+
+### not_startswith { #pyrulefilter.operators.not_startswith }
+
+```python
+operators.not_startswith(a, b)
+```
+
+Check a not startswith b.
+
+```py
+from pyrulefilter.operators import not_startswith
+
+print(not_startswith("hello", "hell"))
+#> False
+print(not_startswith("heel", "hello"))
+#> True
+```
+
+### startswith { #pyrulefilter.operators.startswith }
+
+```python
+operators.startswith(a, b)
+```
+
+Check a startswith b.
+
+```py
+from pyrulefilter.operators import startswith
+
+print(startswith("hello", "hell"))
+#> True
+print(startswith("heel", "hello"))
+#> False
+```

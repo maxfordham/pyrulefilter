@@ -1,0 +1,27 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  navbar:
+    left:
+      - index.qmd
+      - reference/operators.qmd
+
+    right:
+      - icon: github
+        href: https://github.com/maxfordham/pyrulefilter
+        aria-label: GitHub
+
+
+quartodoc:
+  # the name used to import the package you want to create reference docs for
+  package: pyrulefilter
+  parser: google
+
+  sections:
+    - title: Some functions
+      contents:
+        # the functions being documented in the package.
+        # you can refer to anything: class methods, modules, etc..
+        - operators
