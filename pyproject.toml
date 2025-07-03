@@ -10,6 +10,15 @@ keywords = ["rules", "revit"]
 dynamic = ["version"]
 license = "BSD-3-Clause"
 license-files = ["licenses/BSD-3-Clause.txt"]
+description = "A python library for creating and evaluating filter rules, analogous to Revit's filter rules."
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/maxfordham/pyrulefilter"
+Documentation = "https://maxfordham.github.io/pyrulefilter/"
+Issues = "https://github.com/maxfordham/pyrulefilter/issues"
+Changelog = "https://github.com/maxfordham/pyrulefilter/releases"
+
 
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
