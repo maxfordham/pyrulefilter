@@ -7,6 +7,17 @@ on:
       - '*'
       - '!rc*'  # Exclude release candidates
 jobs:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.5
+        with:
+            pixi-version: v0.45.0
+            cache: true
+            cache-write: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      - run: pixi run build
+      
   pypi-publish:
     name: Upload release to PyPI
     runs-on: ubuntu-latest
