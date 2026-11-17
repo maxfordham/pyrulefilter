@@ -5,7 +5,7 @@ dependencies = [
     # "pyuniclass @ git+https://git@github.com/maxfordham/pyuniclass.git@0.1.4",
 ]
 name = "pyrulefilter"
-requires-python = ">= 3.11"
+requires-python = ">= 3.12, <3.14"
 keywords = ["rules", "revit"]
 dynamic = ["version"]
 license = "BSD-3-Clause"
